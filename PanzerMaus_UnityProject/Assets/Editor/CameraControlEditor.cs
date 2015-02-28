@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(CameraControl))]
 public class CameraControlEditor : Editor {
@@ -26,15 +27,25 @@ public class CameraControlEditor : Editor {
 		}
 
 		EditorGUILayout.Space();
-		EditorGUILayout.LabelField ("Camera Field of View Limits");
-		EditorGUILayout.LabelField ("Minimum:", cameraControl.minFoV.ToString()); 
-		EditorGUILayout.LabelField ("Maximum:", cameraControl.maxFoV.ToString());
-		EditorGUILayout.MinMaxSlider (ref cameraControl.minFoV, ref cameraControl.maxFoV, 0.0f, 100.0f);
+		EditorGUILayout.LabelField (Camera.main.isOrthoGraphic ? "Camera Orthographic Size Limits" : "Camera Field of View Limits");
+		EditorGUILayout.LabelField ("  Minimum:", cameraControl.minFoV.ToString()); 
+		EditorGUILayout.LabelField ("  Maximum:", cameraControl.maxFoV.ToString());
+		EditorGUILayout.MinMaxSlider (ref cameraControl.minFoV, ref cameraControl.maxFoV, 0.1f, 100.0f);
 
 		EditorGUILayout.Space();
 		EditorGUILayout.LabelField ("Camera Position Limits");
-		cameraControl.min = EditorGUILayout.Vector2Field("Bottom Left", cameraControl.min);
-		cameraControl.max = EditorGUILayout.Vector2Field("Top Right", cameraControl.max);
+		EditorGUILayout.BeginHorizontal();
+		for (int i = 0; i < cameraControl.limit.Length; i++){
+			EditorGUILayout.BeginVertical();
+			Limit limit = (Limit)i;
+			EditorGUILayout.LabelField(limit.ToString(), GUILayout.MinWidth (25) );
+			EditorGUILayout.LabelField(cameraControl.limit[i].ToString(), GUILayout.MinWidth (25));
+			if (GUILayout.Button ("Set Limit", GUILayout.MinWidth(25))){
+				cameraControl.SetLimit((Limit)i); 
+			}
+			EditorGUILayout.EndVertical();
+		}
+		EditorGUILayout.EndHorizontal();
 	}
 }
 
