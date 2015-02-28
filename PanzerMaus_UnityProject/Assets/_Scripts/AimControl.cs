@@ -4,9 +4,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
+[RequireComponent(typeof(LineRenderer))]
 public class AimControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
 	public RectTransform rangeCircle;
+	public int Steps, WeaponPower;
+	public Transform canonTip;
 
 	private float radius {
 		get {
@@ -18,6 +21,10 @@ public class AimControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		get {
 			return Vector3.Distance(transform.position, rangeCircle.position) / radius;
 		}
+	}
+
+	void Update(){
+		UpdateTrajectory(canonTip.position, Vector3.Normalize(transform.position) * power * WeaponPower, Vector3.down * 9.81f);
 	}
 
 	#region IBeginDragHandler implementation
@@ -43,4 +50,19 @@ public class AimControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	#region IEndDragHandler implementation
 	public void OnEndDrag (PointerEventData eventData) {}
 	#endregion
+
+	void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity){
+		float timeDelta = 1f / initialVelocity.magnitude;
+
+		LineRenderer lineRenderer = GetComponent<LineRenderer>();
+		lineRenderer.SetVertexCount(Steps);
+		Vector3 position = initialPosition;
+		Vector3 velocity = initialVelocity;
+		for (int i = 0; i < Steps; ++i)
+		{
+			lineRenderer.SetPosition(i, new Vector3(position.x, position.y, initialPosition.z));
+			position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
+			velocity += gravity * timeDelta;
+		}
+	}
 }
