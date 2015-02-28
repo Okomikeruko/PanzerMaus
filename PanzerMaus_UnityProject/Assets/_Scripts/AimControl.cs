@@ -8,8 +8,12 @@ using UnityEngine.UI;
 public class AimControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
 	public RectTransform rangeCircle;
-	public int Steps, WeaponPower;
+	public int Steps; 
+	public static float WeaponPower;
 	public Transform canonTip;
+
+	public delegate Vector3 Vectors();
+	public static event Vectors trajectory;
 
 	private float radius {
 		get {
@@ -23,8 +27,18 @@ public class AimControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		}
 	}
 
+	void Start()
+	{
+		FireEvent.power += GetPower;
+	}
+
+	public float GetPower()
+	{
+		return power;
+	}
+
 	void Update(){
-		UpdateTrajectory(canonTip.position, Vector3.Normalize(transform.position) * power * WeaponPower, Vector3.down * 9.81f);
+		UpdateTrajectory(canonTip.position, trajectory() * power * WeaponPower, Physics.gravity);
 	}
 
 	#region IBeginDragHandler implementation
