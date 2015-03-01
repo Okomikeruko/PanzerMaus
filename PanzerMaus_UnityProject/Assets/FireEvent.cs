@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FireEvent : MonoBehaviour {
 
-	public float WeaponPower = 10;
+	public float LaunchPower = 10, BlastRadius = 5, ExplosiveForce = 3;
 
 	public delegate Vector3 Vectors();
 	public static event Vectors position;
@@ -12,22 +12,62 @@ public class FireEvent : MonoBehaviour {
 	public delegate float Floats();
 	public static event Floats power;
 
+	private BulletMotion bulletMotion;
+
 	void Start () {
+		bulletMotion = GetComponent<BulletMotion>();
 		LoadAmmo ();
 	}
 
+	void OnCollisionEnter2D(Collision2D col){
+		FireEventControl.Explode();
+		SpendMe ();
+	}
+
 	void LoadAmmo () {
-		AimControl.WeaponPower = WeaponPower; 
+		AimControl.WeaponPower = LaunchPower; 
 		FireEventControl.fireEvent += FireMe; 
+		FireEventControl.explosionData += ExplodeMe;
 	}
 
 	void FireMe() {
+		bulletMotion.fire();
+		renderer.enabled = true;
 		Vector3 pos = (position != null) ? position() : Vector3.zero;
 		Vector3 tra = (trajectory != null) ? trajectory() : Vector3.zero;
 		float pow = (power != null) ? power() : 0f;
 		transform.position = pos;
+		rigidbody2D.isKinematic = false;
 		rigidbody2D.velocity = Vector2.zero;
-		Debug.Log ("Power: " + pow.ToString());
-		rigidbody2D.AddForce(new Vector2(tra.x, tra.y) * pow * WeaponPower, ForceMode2D.Impulse);
+		rigidbody2D.AddForce(new Vector2(tra.x, tra.y) * pow * LaunchPower, ForceMode2D.Impulse);
+		FireEventControl.fireEvent -= FireMe;
+	}
+
+	void SpendMe() {
+		bulletMotion.firing = false;
+		rigidbody2D.velocity = Vector2.zero;
+		rigidbody2D.angularVelocity = 0;
+		rigidbody2D.isKinematic = true;
+		transform.position = transform.parent.position;
+		transform.rotation = Quaternion.identity;
+		renderer.enabled = false;
+		FireEventControl.ResetExplosionData();
+		LoadAmmo();
+	}
+
+	Explosion ExplodeMe(){
+		return new Explosion(ExplosiveForce, BlastRadius, transform.position); 
+	}
+}
+
+public class Explosion{
+	public float power;
+	public float radius;
+	public Vector3 point; 
+
+	public Explosion(float p, float r, Vector3 pt){
+		power = p; 
+		radius = r; 
+		point = pt; 
 	}
 }

@@ -46,7 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BulletMotion.cs" />
      <Compile Include="Assets\CannonEndNodeBehavior.cs" />
+     <Compile Include="Assets\DistructableGround.cs" />
      <Compile Include="Assets\FireEvent.cs" />
      <Compile Include="Assets\FireEventControl.cs" />
      <Compile Include="Assets\_Scripts\AimControl.cs" />
