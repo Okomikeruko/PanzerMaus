@@ -5,11 +5,12 @@ public class BulletMotion : MonoBehaviour {
 
 	private Vector3 lastPosition;
 	public float offset; 
-	public bool firing = false;
+	public bool firing = false, left;
 
-	public void fire() {
+	public void fire(bool isLeft) {
 		lastPosition = transform.position;;
 		firing = true;
+		left = isLeft;
 	}
 
 	void Update () {
@@ -17,6 +18,7 @@ public class BulletMotion : MonoBehaviour {
 			float deltaY = transform.position.y - lastPosition.y;
 			float deltaX = transform.position.x - lastPosition.x;
 			float angle = Mathf.Atan (deltaY/deltaX) * Mathf.Rad2Deg;
+			angle += left ? 180 : 0;  
 			if (Mathf.Abs(angle) > 0.005f){
 				transform.rotation = Quaternion.Euler(new Vector3(0,0,angle + offset));
 			}

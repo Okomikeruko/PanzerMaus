@@ -16,7 +16,6 @@ public class FireEvent : MonoBehaviour {
 
 	void Start () {
 		bulletMotion = GetComponent<BulletMotion>();
-		LoadAmmo ();
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
@@ -24,17 +23,18 @@ public class FireEvent : MonoBehaviour {
 		SpendMe ();
 	}
 
-	void LoadAmmo () {
+	public void LoadAmmo () {
 		AimControl.WeaponPower = LaunchPower; 
 		FireEventControl.fireEvent += FireMe; 
 		FireEventControl.explosionData += ExplodeMe;
 	}
 
 	void FireMe() {
-		bulletMotion.fire();
+		AimControl.WeaponPower = 0;
 		renderer.enabled = true;
 		Vector3 pos = (position != null) ? position() : Vector3.zero;
 		Vector3 tra = (trajectory != null) ? trajectory() : Vector3.zero;
+		bulletMotion.fire (tra.x < 0);
 		float pow = (power != null) ? power() : 0f;
 		transform.position = pos;
 		rigidbody2D.isKinematic = false;
@@ -52,7 +52,6 @@ public class FireEvent : MonoBehaviour {
 		transform.rotation = Quaternion.identity;
 		renderer.enabled = false;
 		FireEventControl.ResetExplosionData();
-		LoadAmmo();
 	}
 
 	Explosion ExplodeMe(){
