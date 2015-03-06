@@ -19,8 +19,10 @@ public class FireEvent : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
-		FireEventControl.Explode();
-		SpendMe ();
+		if (col.gameObject.tag != "Player") {
+			FireEventControl.Explode ();
+			SpendMe ();
+		}
 	}
 
 	public void LoadAmmo () {
@@ -30,7 +32,7 @@ public class FireEvent : MonoBehaviour {
 	}
 
 	void FireMe() {
-//		AimControl.WeaponPower = 0;
+		AimControl.WeaponPower = 0;
 		renderer.enabled = true;
 		Vector3 pos = (position != null) ? position() : Vector3.zero;
 		Vector3 tra = (trajectory != null) ? trajectory() : Vector3.zero;

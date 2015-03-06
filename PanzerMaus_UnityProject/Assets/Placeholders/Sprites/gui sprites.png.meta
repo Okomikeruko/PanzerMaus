@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: 3684bd91d8e10e8409cf76a56aee5e67
+guid: ed5ab6ea68e11bc4cb61b2cc53d1db10
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Chair_0
-    21300002: Chair_1
-    21300004: Chair_2
-    21300006: Chair_3
+    21300000: target_circle
+    21300002: button_open
+    21300004: button_active
+    21300006: target_active
+    21300008: target_normal
+    21300010: pause_active
+    21300012: pause_normal
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -47,43 +50,73 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Chair_0
+    - name: target_circle
       rect:
         serializedVersion: 2
-        x: 18
-        y: 421
-        width: 419
-        height: 71
+        x: 139
+        y: 1237
+        width: 1756
+        height: 910
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: button_open
+      rect:
+        serializedVersion: 2
+        x: 2141
+        y: 745
+        width: 661
+        height: 664
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Chair_1
+    - name: button_active
       rect:
         serializedVersion: 2
-        x: 38
-        y: 54
-        width: 71
+        x: 2133
+        y: 4
+        width: 661
+        height: 664
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: target_active
+      rect:
+        serializedVersion: 2
+        x: 2512
+        y: 1766
+        width: 187
+        height: 185
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: target_normal
+      rect:
+        serializedVersion: 2
+        x: 2509
+        y: 2065
+        width: 187
+        height: 185
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pause_active
+      rect:
+        serializedVersion: 2
+        x: 3067
+        y: 1470
+        width: 362
         height: 367
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Chair_2
+    - name: pause_normal
       rect:
         serializedVersion: 2
-        x: 9
-        y: 493
-        width: 101
-        height: 417
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Chair_3
-      rect:
-        serializedVersion: 2
-        x: 346
-        y: 49
-        width: 59
-        height: 372
+        x: 3084
+        y: 1985
+        width: 362
+        height: 367
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

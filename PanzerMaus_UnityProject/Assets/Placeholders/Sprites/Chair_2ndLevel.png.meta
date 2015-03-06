@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 3684bd91d8e10e8409cf76a56aee5e67
+guid: deb3befcfaa6e5b4d9da18c4976ddce0
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Chair_0
-    21300002: Chair_1
-    21300004: Chair_2
-    21300006: Chair_3
+    21300000: chair-back-2
+    21300002: chair-seat-2
+    21300004: chair-back-leg-2
+    21300006: chair-front-leg-2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -47,43 +47,43 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Chair_0
+    - name: chair-back-2
       rect:
         serializedVersion: 2
-        x: 18
-        y: 421
-        width: 419
-        height: 71
+        x: 10
+        y: 535
+        width: 89
+        height: 418
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Chair_1
+    - name: chair-seat-2
       rect:
         serializedVersion: 2
-        x: 38
-        y: 54
-        width: 71
-        height: 367
+        x: 17
+        y: 417
+        width: 421
+        height: 76
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Chair_2
+    - name: chair-back-leg-2
       rect:
         serializedVersion: 2
-        x: 9
-        y: 493
-        width: 101
-        height: 417
+        x: 43
+        y: 34
+        width: 54
+        height: 371
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Chair_3
+    - name: chair-front-leg-2
       rect:
         serializedVersion: 2
-        x: 346
-        y: 49
-        width: 59
-        height: 372
+        x: 351
+        y: 31
+        width: 62
+        height: 373
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
