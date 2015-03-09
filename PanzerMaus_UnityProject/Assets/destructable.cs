@@ -26,11 +26,16 @@ public class destructable : MonoBehaviour {
 		this.transform.parent = null;
 		if(Health <= 0){
 			FireEventControl.explosionEvent -= ExplodingEvent;
+			destructable[] children = this.GetComponentsInChildren<destructable>();
+			foreach (destructable d in children)
+			{
+				FireEventControl.explosionEvent -= d.ExplodingEvent;
+			}
 			Destroy(this.gameObject);
 		}
 	}
 
-	void ExplodingEvent(Explosion data){
+	public void ExplodingEvent(Explosion data){
 		if (Vector3.Distance (transform.position, data.point) <= data.radius) {
 			TakeDamage();
 			if(GetComponent<Rigidbody2D>() == null){
