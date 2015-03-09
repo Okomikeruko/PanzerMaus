@@ -24,13 +24,22 @@ public class destructable : MonoBehaviour {
 		index = (index < states.Length - 1) ? index + 1 : index ;
 		spriteRenderer.sprite = states[index];
 		this.transform.parent = null;
+		if (Health < MaxHealth) {
+			while (this.transform.childCount > 0)
+			{
+				if(this.transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>() == null){
+					this.transform.GetChild(0).gameObject.AddComponent<Rigidbody2D>();
+				}
+				this.transform.GetChild(0).parent = null;
+			}
+		}
 		if(Health <= 0){
 			FireEventControl.explosionEvent -= ExplodingEvent;
-			destructable[] children = this.GetComponentsInChildren<destructable>();
-			foreach (destructable d in children)
-			{
-				FireEventControl.explosionEvent -= d.ExplodingEvent;
-			}
+//			destructable[] children = this.GetComponentsInChildren<destructable>();
+//			foreach (destructable d in children)
+//			{
+//				FireEventControl.explosionEvent -= d.ExplodingEvent;
+//			}
 			Destroy(this.gameObject);
 		}
 	}
