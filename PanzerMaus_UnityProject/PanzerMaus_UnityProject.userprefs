@@ -1,14 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CannonEndNodeBehavior.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\destructable.cs">
     <Files>
-      <File FileName="Assets\_Scripts\AimControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\FireEventControl.cs" Line="23" Column="18" />
-      <File FileName="Assets\FireEvent.cs" Line="65" Column="24" />
-      <File FileName="Assets\_Scripts\CameraControl.cs" Line="44" Column="1" />
-      <File FileName="Assets\Editor\CameraControlEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\DistructableGround.cs" Line="30" Column="2" />
-      <File FileName="Assets\CannonEndNodeBehavior.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\AimControl.cs" Line="59" Column="125" />
+      <File FileName="Assets\_Scripts\FireEvent.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\DistructableGround.cs" Line="35" Column="4" />
+      <File FileName="Assets\destructable.cs" Line="24" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

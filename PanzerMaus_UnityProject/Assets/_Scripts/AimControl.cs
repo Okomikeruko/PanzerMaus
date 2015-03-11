@@ -55,6 +55,9 @@ public class AimControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 		Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 		transform.position = curPosition;
+		if (transform.localPosition.y <= rangeCircle.localPosition.y) { 
+			transform.localPosition = new Vector3(transform.localPosition.x, rangeCircle.localPosition.y, transform.localPosition.z);
+		}
 		if ( Vector3.Distance(transform.position, rangeCircle.position) > radius){
 			transform.position = rangeCircle.position + Vector3.ClampMagnitude(transform.position - rangeCircle.position, radius);
 		}
