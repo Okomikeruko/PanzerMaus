@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class boom : MonoBehaviour {
 
 	public Sprite blast;
@@ -36,5 +37,8 @@ public class boom : MonoBehaviour {
 		                         new Rect (0, 0, output.width, output.height), 
 		                         new Vector2 (0.5f, 0.5f));
 		spriteRenderer.sprite = current;
+
+		Destroy (GetComponent<PolygonCollider2D>());
+		gameObject.AddComponent<PolygonCollider2D> ();
 	}
 }
