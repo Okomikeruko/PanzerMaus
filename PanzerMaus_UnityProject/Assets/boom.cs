@@ -15,8 +15,9 @@ public class boom : MonoBehaviour {
 	}
 
 	void ExplodingEvent(Explosion data){
-		int offsetX = (int)((transform.position.x - data.point.x) * 100);
-		int offsetY = (int)((transform.position.y - data.point.y) * 100);
+		Vector3 offsetV = transform.InverseTransformPoint(data.point);
+		int offsetX = (int)((-offsetV.x) * 100);
+		int offsetY = (int)((-offsetV.y) * 100);
 		current = spriteRenderer.sprite;
 		Texture2D output = new Texture2D (current.texture.width, current.texture.height);
 		int j = 0;
