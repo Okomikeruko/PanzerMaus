@@ -131,7 +131,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     motionNodeName: 
     animationCompression: 1
     animationRotationError: .5
@@ -139,7 +139,83 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 6
+      lastFrame: 125
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: betweenWheels_l_geo
+        weight: 1
+      - path: littleWheel_l_geo
+        weight: 1
+      - path: bigWheel_l_geo
+        weight: 1
+      - path: belt_l_grp
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_4_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_5_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_6_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_7_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_8_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_9_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_10_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_11_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_12_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_13_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_14_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_15_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_16_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_17_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_18_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_19_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_0_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_1_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_2_geo
+        weight: 1
+      - path: belt_l_grp/beltPeice_l_3_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -173,7 +249,7 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: betweenWheels_l_geo
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   additionalBone: 0
