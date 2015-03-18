@@ -16,7 +16,7 @@ public class boom : MonoBehaviour {
 	}
 
 	void ExplodingEvent(Explosion data){
-		if (data.col.gameObject.tag == "Destuctable"){
+		if (data.col.gameObject.tag == "Destructable"){
 			if (data.col.gameObject.GetComponent<SpriteRenderer>() != null){
 				spriteRenderer = data.col.gameObject.GetComponent<SpriteRenderer>();
 				current = (Texture2D)spriteRenderer.sprite.texture;
@@ -27,7 +27,6 @@ public class boom : MonoBehaviour {
 			Vector3 offsetV = data.col.gameObject.transform.InverseTransformPoint(data.point);
 			int offsetX = (int)((-offsetV.x) * 100);
 			int offsetY = (int)((-offsetV.y) * 100);
-			current = spriteRenderer.sprite.texture;
 			Texture2D output = new Texture2D (current.width, current.height);
 			int j = 0;
 			while (j < output.height) {
@@ -49,12 +48,12 @@ public class boom : MonoBehaviour {
 				                                       new Rect (0, 0, output.width, output.height), 
 				                                       new Vector2 (0.5f, 0.5f)
 				                                       );
+				Destroy (data.col.gameObject.GetComponent<PolygonCollider2D>());
+				data.col.gameObject.AddComponent<PolygonCollider2D> ();
 			} else if (meshRenderer != null){
 				meshRenderer.materials[0].SetTexture(0, output);
 			}
-			Destroy (data.col.gameObject.GetComponent<PolygonCollider2D>());
-			data.col.gameObject.AddComponent<PolygonCollider2D> ();
-			SpriteSlicer2D.SliceAllSprites(data.point, data.direction * 30);
+			SpriteSlicer2D.SliceAllSprites(data.point, data.direction, data.col.gameObject.tag); 
 		}
 	}
 }
