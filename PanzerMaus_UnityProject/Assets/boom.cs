@@ -53,7 +53,7 @@ public class boom : MonoBehaviour {
 			} else if (meshRenderer != null){
 				meshRenderer.materials[0].SetTexture(0, output);
 			}
-			SpriteSlicer2D.SliceAllSprites(data.point, data.direction, data.col.gameObject.tag); 
+			SpriteSlicer2D.SliceAllSprites(data.start, data.end, data.col.gameObject.tag); 
 		}
 	}
 }

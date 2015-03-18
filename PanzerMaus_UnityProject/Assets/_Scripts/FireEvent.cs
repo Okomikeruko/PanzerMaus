@@ -63,21 +63,21 @@ public class FireEvent : MonoBehaviour {
 	}
 
 	Explosion ExplodeMe(){
-		Debug.Log (transform.up);
-		return new Explosion(ExplosiveForce, BlastRadius, transform.position, transform.position + (transform.up * BlastRadius), collision2D); 
+		return new Explosion(ExplosiveForce, BlastRadius, transform.position, transform.position + (transform.up * BlastRadius), transform.position + (-transform.up * BlastRadius), collision2D); 
 	}
 }
 
 public class Explosion{
 	public float power, radius;
-	public Vector3 point, direction;
+	public Vector3 point, start, end;
 	public Collision2D col;
-	public Explosion(float p, float r, Vector3 pt, Vector3 dt, Collision2D c){
+	public Explosion(float p, float r, Vector3 pt, Vector3 st, Vector3 e, Collision2D c){
 		power = p; 
 		radius = r; 
 		point = pt;
-		direction = dt;
+		start = st;
+		end = e;
 		col = c;
-		Debug.Log (point + " " + direction);
+
 	}
 }
