@@ -13,12 +13,14 @@ public class FireEvent : MonoBehaviour {
 	public static event Floats power;
 
 	private BulletMotion bulletMotion;
+	private Collision2D collision2D;
 
 	void Start () {
 		bulletMotion = GetComponent<BulletMotion>();
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
+		collision2D = col;
 		if (col.gameObject.tag != "Player") {
 			FireEventControl.Explode ();
 			SpendMe ();
@@ -61,18 +63,21 @@ public class FireEvent : MonoBehaviour {
 	}
 
 	Explosion ExplodeMe(){
-		return new Explosion(ExplosiveForce, BlastRadius, transform.position); 
+		return new Explosion(ExplosiveForce, BlastRadius, transform.position, transform.position + (transform.up * BlastRadius), transform.position + (-transform.up * BlastRadius), collision2D); 
 	}
 }
 
 public class Explosion{
-	public float power;
-	public float radius;
-	public Vector3 point; 
-
-	public Explosion(float p, float r, Vector3 pt){
+	public float power, radius;
+	public Vector3 point, start, end;
+	public Collision2D col;
+	public Explosion(float p, float r, Vector3 pt, Vector3 st, Vector3 e, Collision2D c){
 		power = p; 
 		radius = r; 
-		point = pt; 
+		point = pt;
+		start = st;
+		end = e;
+		col = c;
+
 	}
 }
