@@ -43,6 +43,9 @@ public class FireEvent : MonoBehaviour {
 		rigidbody2D.velocity = Vector2.zero;
 		rigidbody2D.AddForce(new Vector2(tra.x, tra.y) * pow * LaunchPower, ForceMode2D.Impulse);
 		FireEventControl.fireEvent -= FireMe;
+		position = null;
+		trajectory = null;
+		PlayerTurnControl.StartInbetween();
 	}
 
 	void SpendMe() {
@@ -54,6 +57,7 @@ public class FireEvent : MonoBehaviour {
 		transform.rotation = Quaternion.identity;
 		renderer.enabled = false;
 		FireEventControl.ResetExplosionData();
+		PlayerTurnControl.NextTurn();
 	}
 
 	Explosion ExplodeMe(){

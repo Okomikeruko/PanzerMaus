@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\IKController.cs" />
      <Compile Include="Assets\_Scripts\AimControl.cs" />
      <Compile Include="Assets\_Scripts\BulletMotion.cs" />
      <Compile Include="Assets\_Scripts\CameraControl.cs" />
@@ -54,7 +55,10 @@
      <Compile Include="Assets\_Scripts\FireEvent.cs" />
      <Compile Include="Assets\_Scripts\FireEventControl.cs" />
      <Compile Include="Assets\_Scripts\LookAtTarget.cs" />
-     <Compile Include="Assets\destructable.cs" />
+     <Compile Include="Assets\_Scripts\PlayerTurnControl.cs" />
+     <Compile Include="Assets\_Scripts\PlayerTurnUI.cs" />
+     <Compile Include="Assets\_Scripts\TankMotionControl.cs" />
+     <Compile Include="Assets\_Scripts\destructable.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>
