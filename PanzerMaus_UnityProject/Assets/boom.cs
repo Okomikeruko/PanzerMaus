@@ -33,9 +33,7 @@ public class boom : MonoBehaviour {
 				int i = 0;
 				while (i < output.width){
 					Color original = current.GetPixel(i, j);
-					Color color = (blast.texture.GetPixel(offsetX + i, offsetY + j) != null) ? 
-						blast.texture.GetPixel(offsetX + i, offsetY + j) : 
-							Color.white;
+					Color color = blast.texture.GetPixel(offsetX + i, offsetY + j);
 					output.SetPixel(i, j, color * original);
 					i++;
 				}

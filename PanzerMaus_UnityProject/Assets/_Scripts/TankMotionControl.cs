@@ -20,7 +20,7 @@ public class TankMotionControl : MonoBehaviour {
 		                               transform.position.y + offset.y,
 		                               transform.position.z);
 
-		move = 1; //Input.GetAxis("Horizontal");
+		move = Input.GetAxis("Horizontal");
 		if(movement & rigidbody2D.velocity.magnitude < maxSpeed){
 			rigidbody2D.AddForce(transform.right * move * stopper * speed, ForceMode2D.Force);
 		}
@@ -54,6 +54,7 @@ public class TankMotionControl : MonoBehaviour {
 			}
 			stopper = 1;
 		}
+
 
 		/* Inside Corner Turn */
 		if (forward.distance < forwardDistance && move > 0 || 
