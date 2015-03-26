@@ -46,11 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\IKController.cs" />
      <Compile Include="Assets\SpriteSlicer2D\Demo\Scripts\FadeAndDestroy.cs" />
      <Compile Include="Assets\SpriteSlicer2D\Demo\Scripts\SpriteSlicer2DDemoManager.cs" />
      <Compile Include="Assets\SpriteSlicer2D\Scripts\SpriteSlicer2D.cs" />
-     <Compile Include="Assets\TankWheelMotion.cs" />
      <Compile Include="Assets\_Scripts\AimControl.cs" />
      <Compile Include="Assets\_Scripts\BulletMotion.cs" />
      <Compile Include="Assets\_Scripts\CameraControl.cs" />
@@ -62,8 +60,9 @@
      <Compile Include="Assets\_Scripts\PlayerTurnControl.cs" />
      <Compile Include="Assets\_Scripts\PlayerTurnUI.cs" />
      <Compile Include="Assets\_Scripts\TankMotionControl.cs" />
+     <Compile Include="Assets\_Scripts\TankWheelMotion.cs" />
+     <Compile Include="Assets\_Scripts\boom.cs" />
      <Compile Include="Assets\_Scripts\destructable.cs" />
-     <Compile Include="Assets\boom.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>

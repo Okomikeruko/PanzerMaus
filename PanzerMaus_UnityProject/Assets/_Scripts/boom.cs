@@ -25,9 +25,10 @@ public class boom : MonoBehaviour {
 				current = (Texture2D)meshRenderer.materials[0].GetTexture(0);
 			}
 			Vector3 offsetV = data.col.gameObject.transform.InverseTransformPoint(data.point);
-			int offsetX = (int)((-offsetV.x) * 100);
-			int offsetY = (int)((-offsetV.y) * 100);
+			int offsetX = (int)((-offsetV.x) * 100) - (current.width - blast.texture.width) / 2; 
+			int offsetY = (int)((-offsetV.y) * 100) - (current.height - blast.texture.height) / 2;
 			Texture2D output = new Texture2D (current.width, current.height);
+			Debug.Log (output.width + " " + offsetX + " | " + output.height + " " + offsetY);
 			int j = 0;
 			while (j < output.height) {
 				int i = 0;
