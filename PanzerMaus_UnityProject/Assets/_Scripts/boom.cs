@@ -44,7 +44,7 @@ public class boom : MonoBehaviour {
 
 			if(spriteRenderer != null) {
 				spriteRenderer.sprite = Sprite.Create (output, 
-				                                       new Rect (0, 0, output.width, output.height), 
+				                                       spriteRenderer.sprite.textureRect, 
 				                                       new Vector2 (0.5f, 0.5f)
 				                                       );
 				Destroy (data.col.gameObject.GetComponent<PolygonCollider2D>());
