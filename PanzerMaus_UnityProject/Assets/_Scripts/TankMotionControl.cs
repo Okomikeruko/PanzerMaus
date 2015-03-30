@@ -5,7 +5,7 @@ public class TankMotionControl : MonoBehaviour {
 
 	public bool movement = false;
 	private int stopper = 1;
-	public float speed, maxSpeed, groundDistance, angularDistance, rotationalSpeed, rotationalTolerance, gravitationalForce, forwardDistance, rearDistance;
+	public float speed, maxSpeed, groundDistance, angularDistance, rotationalSpeed, rotationalTolerance, gravitationalForce, forwardDistance, rearDistance, angularGroundDistance;
 	public Vector2 offset;
 	private Vector3 offsetTransform;
 	private float move;
@@ -22,7 +22,7 @@ public class TankMotionControl : MonoBehaviour {
 
 		move = Input.GetAxis("Horizontal");
 		if(movement & rigidbody2D.velocity.magnitude < maxSpeed){
-			rigidbody2D.AddForce(transform.right * move * stopper * speed, ForceMode2D.Force);
+			rigidbody2D.AddForce((transform.right + (transform.up * 0.1f)) * move * stopper * speed, ForceMode2D.Force);
 		}
 
 		down = getDirection(-transform.up);
@@ -43,8 +43,8 @@ public class TankMotionControl : MonoBehaviour {
 
 		/* Outide Corner Turn */
 
-		if (sqrt <= forwardDown.distance && move > 0 && forwardDistance < forward.distance && !turn || 
-		    sqrt <= backwardDown.distance && move < 0 && rearDistance < backward.distance && !turn){
+		if (sqrt <= forwardDown.distance * angularGroundDistance && move > 0 && forwardDistance < forward.distance && !turn || 
+		    sqrt <= backwardDown.distance * angularGroundDistance && move < 0 && rearDistance < backward.distance && !turn){
 				rigidbody2D.velocity = Vector2.zero;
 				stopper = 0;
 				transform.Rotate(0, 0, -move * rotationalSpeed);
@@ -55,6 +55,7 @@ public class TankMotionControl : MonoBehaviour {
 			stopper = 1;
 		}
 
+		rigidbody2D.fixedAngle = turn;
 
 		/* Inside Corner Turn */
 		if (forward.distance < forwardDistance && move > 0 || 
@@ -63,7 +64,8 @@ public class TankMotionControl : MonoBehaviour {
 		}
 
 		if (forward.distance > forwardDistance * angularDistance && move > 0 ||
-		    backward.distance > rearDistance * angularDistance && move < 0){
+		    backward.distance > rearDistance * angularDistance && move < 0 ||
+			move == 0) {
 			turn = false;
 		}
 
