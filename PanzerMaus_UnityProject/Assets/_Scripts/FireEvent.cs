@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(BulletMotion))]
+[RequireComponent(typeof(AudioSource))]
+
 public class FireEvent : MonoBehaviour {
 
 	public float LaunchPower = 10, BlastRadius = 5, ExplosiveForce = 3;
+
+	public AudioClip cannonFire;
+	private AudioSource source; 
 
 	public delegate Vector3 Vectors();
 	public static event Vectors position;
@@ -17,6 +23,7 @@ public class FireEvent : MonoBehaviour {
 
 	void Start () {
 		bulletMotion = GetComponent<BulletMotion>();
+		source = GetComponent<AudioSource> ();
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
@@ -34,6 +41,7 @@ public class FireEvent : MonoBehaviour {
 	}
 
 	void FireMe() {
+		source.PlayOneShot (cannonFire);
 		AimControl.WeaponPower = 0;
 		renderer.enabled = true;
 		Vector3 pos = (position != null) ? position() : Vector3.zero;
