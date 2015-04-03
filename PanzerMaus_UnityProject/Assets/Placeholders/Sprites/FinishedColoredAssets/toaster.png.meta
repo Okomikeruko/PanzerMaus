@@ -48,20 +48,20 @@ TextureImporter:
     - name: toaster_0
       rect:
         serializedVersion: 2
-        x: 252
-        y: 536
-        width: 568
-        height: 452
+        x: 108
+        y: 218
+        width: 227
+        height: 179
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: toaster_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 24
-        width: 955
-        height: 480
+        x: 23
+        y: 15
+        width: 380
+        height: 191
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
