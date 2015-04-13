@@ -5,11 +5,16 @@ public class CameraControl : MonoBehaviour {
 
 	public float wheel, pinch, mouseDragSpeed, fingerDragSpeed, minFoV, maxFoV;
 	public Vector3[] limit = new Vector3[4];
+	public int playerCount;
+	public Transform[] tanks;
 
+	private bool newPlayer = true;
 	private float z;
 	private Vector3 lastMousePos, lowerLeft, upperRight;
 	
-
+	void Start(){
+		PlayerTurnControl.cameraRefresh += refreshCamera;
+	}
 
 	public void Update()
 	{
@@ -25,7 +30,13 @@ public class CameraControl : MonoBehaviour {
 		} else {
 			camera.orthographicSize = Mathf.Clamp (camera.orthographicSize - (scroll * wheel), minFoV, maxFoV);
 		}
-		transform.position = LimitPosition(transform.position, lowerLeft, upperRight);
+		if(PlayerTurnControl.GetMove(PlayerTurnControl.GetTurn()) != 0 || newPlayer)
+		{
+			newPlayer = false;
+			transform.position = LimitPosition(tanks[PlayerTurnControl.GetTurn()].position, lowerLeft, upperRight); 
+		}else {
+			transform.position = LimitPosition(transform.position, lowerLeft, upperRight);
+		}
 
 		if (Input.GetMouseButtonDown (2)){
 			lastMousePos = Input.mousePosition;
@@ -96,6 +107,10 @@ public class CameraControl : MonoBehaviour {
 
 	public void SetLimit(Limit l){
 		limit[(int)l] = transform.position;
+	}
+
+	public void refreshCamera(){
+		newPlayer = true;
 	}
 }
 

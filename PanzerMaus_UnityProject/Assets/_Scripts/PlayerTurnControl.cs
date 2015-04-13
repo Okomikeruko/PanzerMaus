@@ -9,9 +9,15 @@ public class PlayerTurnControl : MonoBehaviour {
 	public delegate void Inbetween();
 	public static event Inbetween inbetween;
 
+	public delegate void Movement(int move);
+	public static event Movement movement;
+
+	public delegate void CameraRefresh();
+	public static event CameraRefresh cameraRefresh;
 
 	private static int turn = 0; 
 	private static int playerCount = 0;
+	private static int move = 0;
 
 	void Start(){
 		playerCount = playerTurn.GetInvocationList().Length;
@@ -19,10 +25,11 @@ public class PlayerTurnControl : MonoBehaviour {
 	}
 
 	public static void NextTurn(){
-		if(playerTurn != null)
+		if(playerTurn != null && cameraRefresh != null)
 		{
-			playerTurn(turn);
 			turn = ++turn % playerCount;
+			playerTurn(turn);
+			cameraRefresh();
 		}
 	}
 
@@ -30,5 +37,20 @@ public class PlayerTurnControl : MonoBehaviour {
 		if(inbetween != null) {
 			inbetween();
 		}
+	}
+
+	public static int GetTurn()
+	{
+		return turn;
+	}
+
+	public static int GetMove(int player)
+	{
+		return (player == turn) ? move : 0;
+	}
+
+	public static void SetMove(int m)
+	{
+		move = m;
 	}
 }

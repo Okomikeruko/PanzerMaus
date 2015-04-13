@@ -46,6 +46,16 @@ public class CameraControlEditor : Editor {
 			EditorGUILayout.EndVertical();
 		}
 		EditorGUILayout.EndHorizontal();
+
+		cameraControl.playerCount = EditorGUILayout.IntField("Player Count", cameraControl.playerCount);
+		if(cameraControl.playerCount != cameraControl.tanks.Length){
+			cameraControl.tanks = new Transform[cameraControl.playerCount];
+		}
+		if (cameraControl.playerCount > 0){
+			for ( int i = 0; i < cameraControl.tanks.Length; i++){
+				cameraControl.tanks[i] = EditorGUILayout.ObjectField ("Tank " + (i+1).ToString(), cameraControl.tanks[i], typeof( Transform ), true) as Transform;
+			}
+		}
 	}
 }
 

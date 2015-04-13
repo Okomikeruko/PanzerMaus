@@ -13,14 +13,20 @@ public class TankMotionControl : MonoBehaviour {
 	private Vector3 gravity;
 	private GameObject climber;
 	private RaycastHit2D down, forwardDown, backwardDown, forward, backward;
-	
+	private CannonEndNodeBehavior c;
+
+	void Start()
+	{
+		c = GetComponentInChildren<CannonEndNodeBehavior>();
+	}
+
 	void Update()
 	{
 		offsetTransform = new Vector3 (transform.position.x + offset.x,
 		                               transform.position.y + offset.y,
 		                               transform.position.z);
 
-		move = Input.GetAxis("Horizontal");
+		move = PlayerTurnControl.GetMove(c.playerIndex); 
 		if(movement & rigidbody2D.velocity.magnitude < maxSpeed){
 			rigidbody2D.AddForce((transform.right + (transform.up * 0.1f)) * move * stopper * speed, ForceMode2D.Force);
 		}
