@@ -67,7 +67,6 @@ public class FireEvent : MonoBehaviour {
 		transform.rotation = Quaternion.identity;
 		renderer.enabled = false;
 		FireEventControl.ResetExplosionData();
-		PlayerTurnControl.NextTurn();
 	}
 
 	Explosion ExplodeMe(){

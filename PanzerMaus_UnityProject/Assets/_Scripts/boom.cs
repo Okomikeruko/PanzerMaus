@@ -21,6 +21,7 @@ public class boom : MonoBehaviour {
 		} else {
 			blowItUp (scorch, data.col.gameObject, data);
 		}
+		MoveManager.EndMove();
 	}
 
 	void blowItUp(Sprite b, GameObject g, Explosion data){

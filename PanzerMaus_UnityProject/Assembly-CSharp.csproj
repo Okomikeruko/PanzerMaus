@@ -46,11 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FuelGage.cs" />
      <Compile Include="Assets\MotionController.cs" />
+     <Compile Include="Assets\MoveManager.cs" />
      <Compile Include="Assets\MovementSound.cs" />
      <Compile Include="Assets\SpriteSlicer2D\Demo\Scripts\FadeAndDestroy.cs" />
      <Compile Include="Assets\SpriteSlicer2D\Demo\Scripts\SpriteSlicer2DDemoManager.cs" />
      <Compile Include="Assets\SpriteSlicer2D\Scripts\SpriteSlicer2D.cs" />
+     <Compile Include="Assets\TurnGage.cs" />
      <Compile Include="Assets\_Scripts\AimControl.cs" />
      <Compile Include="Assets\_Scripts\BulletMotion.cs" />
      <Compile Include="Assets\_Scripts\CameraControl.cs" />

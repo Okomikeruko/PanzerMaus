@@ -3,36 +3,63 @@ using System.Collections;
 
 public class PlayerTurnControl : MonoBehaviour {
 
-	public delegate void PlayerTurn(int playerIndex);
-	public static event PlayerTurn playerTurn;
+	public delegate void DelegateInt(int i);
+	public static event DelegateInt playerTurn, movement, fire;
 
-	public delegate void Inbetween();
-	public static event Inbetween inbetween;
+	public delegate void Delegate();
+	public static event Delegate inbetween, cameraRefresh;
 
-	public delegate void Movement(int move);
-	public static event Movement movement;
-
-	public delegate void CameraRefresh();
-	public static event CameraRefresh cameraRefresh;
-
-	private static int turn = 0; 
-	private static int playerCount = 0;
-	private static int move = 0;
-
+	private static int turn = 0, playerCount = 0, move = 0;
+	private static float timer = 5;
+	private static bool timerOn = false; 
 	void Start(){
-		playerCount = playerTurn.GetInvocationList().Length;
+		playerCount = fire.GetInvocationList().Length;
+		turn = playerCount;
 		NextTurn ();
 	}
 
-	public static void NextTurn(){
-		if(playerTurn != null && cameraRefresh != null)
-		{
-			turn = ++turn % playerCount;
-			playerTurn(turn);
-			cameraRefresh();
+	void Update() {
+		if (timerOn) {
+			timer -= Time.deltaTime;
+		}
+		if (timer <= 0f){
+			ResetTimer();
 		}
 	}
 
+	public static void setTimer(bool b){
+		timerOn = b;
+	}
+
+	public static float GetTimerRatio(){
+		return timer / 5f;
+	}
+
+	public static void ResetTimer() {
+		timer = 5;
+		timerOn = false;
+		move = 0;
+		MoveManager.EndMove();
+		NextMove ();
+	}
+
+	public static void NextTurn(){
+		turn = ++turn % playerCount;
+		NextMove ();
+	}
+
+	public static void NextMove(){
+		if(cameraRefresh != null)
+		{
+			cameraRefresh();
+		}
+	}
+	public static void Fire(){
+		if(fire != null)
+		{
+			fire(turn);
+		}
+	}
 	public static void StartInbetween() {
 		if(inbetween != null) {
 			inbetween();
