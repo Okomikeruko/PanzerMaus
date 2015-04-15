@@ -73,6 +73,7 @@ public class AimControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
 		LineRenderer lineRenderer = GetComponent<LineRenderer>();
 		lineRenderer.SetVertexCount(Steps);
+		lineRenderer.sortingOrder = 5;
 		Vector3 position = initialPosition;
 		Vector3 velocity = initialVelocity;
 		for (int i = 0; i < Steps; ++i)
