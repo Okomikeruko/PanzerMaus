@@ -26,6 +26,9 @@ public class ScortchEventBehavior : MonoBehaviour {
 	}
 	
 	void blowItUp(Sprite b, Explosion data){
+		if (rigidbody2D != null) {
+			rigidbody2D.isKinematic = false;
+		}
 		current = (Texture2D)spriteRenderer.sprite.texture;
 
 		Vector3 offsetV = transform.InverseTransformPoint(data.point);

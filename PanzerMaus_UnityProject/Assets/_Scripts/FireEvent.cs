@@ -103,14 +103,14 @@ public class TextureData{
 	{
 		TextureData output = new TextureData();
 		output.width = (int)((isOutside(pointA.x, 0, a.width)) 
-		                     ?  (pointA.x > 0 ) 
-		                     ? (b.width - pointB.x) - (pointA.x - a.width)
-		                     : (b.height - pointB.x) + pointA.x 
+		                     ? (pointA.x > 0 ) 
+		                     ? smaller ((b.width - pointB.x) - (pointA.x - a.width), a.width)
+		                     : (b.width - pointB.x) + pointA.x 
 		                     : smaller (pointA.x, pointB.x) + smaller (a.width - pointA.x, b.width - pointB.x));
 		
 		output.height = (int)((isOutside (pointA.y, 0, a.height)) 
 		                      ? (pointA.y > 0 ) 
-		                      ? (b.height - pointB.y) - (pointA.y - a.height) 
+		                      ? smaller ((b.height - pointB.y) - (pointA.y - a.height), a.height)
 		                      : (b.height - pointB.y) + pointA.y
 		                      : smaller (pointA.y, pointB.y) + smaller (a.height - pointA.y, b.height - pointB.y)); 
 		switch (returnData){
@@ -119,8 +119,8 @@ public class TextureData{
 			output.y = (int)Mathf.Clamp (pointA.y - pointB.y, 0, smaller (a.height / 2, b.height / 2));
 			return output;
 		case "b":
-			output.x = (int)Mathf.Clamp ((b.width - pointB.x) - pointA.x , 0, (b.width - pointB.x));
-			output.y = (int)Mathf.Clamp ((b.height - pointB.y) - pointA.y, 0, (b.height - pointB.y));
+			output.x = (int)Mathf.Clamp ((b.width - pointB.x) - pointA.x , 0, (b.width)); // - pointB.x));
+			output.y = (int)Mathf.Clamp ((b.height - pointB.y) - pointA.y, 0, (b.height)); // - pointB.y));
 			return output;
 		default:
 			return new TextureData();
