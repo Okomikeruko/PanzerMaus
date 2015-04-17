@@ -12,6 +12,7 @@ public class ScortchEventBehavior : MonoBehaviour {
 	
 	void Start () {
 		FireEventControl.explosionEvent += ExplodingEvent;
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	void ExplodingEvent(Explosion data){
@@ -25,8 +26,6 @@ public class ScortchEventBehavior : MonoBehaviour {
 	}
 	
 	void blowItUp(Sprite b, Explosion data){
-		
-		spriteRenderer = GetComponent<SpriteRenderer>();
 		current = (Texture2D)spriteRenderer.sprite.texture;
 
 		Vector3 offsetV = transform.InverseTransformPoint(data.point);
