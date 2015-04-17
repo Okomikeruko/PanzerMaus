@@ -11,6 +11,7 @@ public class boom : MonoBehaviour {
 	}
 
 	void ExplodingEvent(Explosion data){
+		CameraControl.followBullet = false;
 		Instantiate(round, data.point, Quaternion.identity);
 		StartCoroutine(EndOfTurn(2.0f));
 	}

@@ -41,6 +41,7 @@ public class FireEvent : MonoBehaviour {
 	}
 
 	void FireMe() {
+		CameraControl.followBullet = true;
 		source.PlayOneShot (cannonFire);
 		AimControl.WeaponPower = 0;
 		renderer.enabled = true;

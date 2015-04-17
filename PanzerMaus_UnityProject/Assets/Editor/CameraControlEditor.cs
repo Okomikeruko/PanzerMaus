@@ -56,6 +56,8 @@ public class CameraControlEditor : Editor {
 				cameraControl.tanks[i] = EditorGUILayout.ObjectField ("Tank " + (i+1).ToString(), cameraControl.tanks[i], typeof( Transform ), true) as Transform;
 			}
 		}
+
+		cameraControl.shot = EditorGUILayout.ObjectField ("Shot", cameraControl.shot, typeof(Transform), true) as Transform;
 	}
 }
 

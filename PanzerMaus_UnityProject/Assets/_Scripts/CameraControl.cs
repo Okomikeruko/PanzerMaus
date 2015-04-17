@@ -7,6 +7,9 @@ public class CameraControl : MonoBehaviour {
 	public Vector3[] limit = new Vector3[4];
 	public int playerCount;
 	public Transform[] tanks;
+	public Transform shot;
+
+	public static bool followBullet = false;
 
 	private bool newPlayer = true;
 	private float z;
@@ -30,11 +33,14 @@ public class CameraControl : MonoBehaviour {
 		} else {
 			camera.orthographicSize = Mathf.Clamp (camera.orthographicSize - (scroll * wheel), minFoV, maxFoV);
 		}
-		if(PlayerTurnControl.GetMove(PlayerTurnControl.GetTurn()) != 0 || newPlayer)
+		if (followBullet){
+			transform.position = LimitPosition(shot.transform.position, lowerLeft, upperRight);
+		}
+		else if(PlayerTurnControl.GetMove(PlayerTurnControl.GetTurn()) != 0 || newPlayer)
 		{
 			newPlayer = false;
 			transform.position = LimitPosition(tanks[PlayerTurnControl.GetTurn()].position, lowerLeft, upperRight); 
-		}else {
+		}else{
 			transform.position = LimitPosition(transform.position, lowerLeft, upperRight);
 		}
 

@@ -8,7 +8,6 @@ public class ScortchEventBehavior : MonoBehaviour {
 	
 	private Texture2D current;
 	private SpriteRenderer spriteRenderer;
-	private MeshRenderer meshRenderer;
 	List<SpriteSlicer2DSliceInfo> sliceReference; 
 	
 	void Start () {
@@ -55,8 +54,6 @@ public class ScortchEventBehavior : MonoBehaviour {
 			                                       );
 			Destroy (GetComponent<PolygonCollider2D>());
 			this.gameObject.AddComponent<PolygonCollider2D> ();
-		} else if (meshRenderer != null){
-			meshRenderer.materials[0].SetTexture(0, output);
 		}
 		//SpriteSlicer2D.SliceAllSprites(data.start, data.end, data.col.gameObject.tag); 
 	}
