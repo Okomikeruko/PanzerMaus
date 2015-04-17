@@ -69,8 +69,13 @@ public class FireEvent : MonoBehaviour {
 		FireEventControl.ResetExplosionData();
 	}
 
-	Explosion ExplodeMe(){
-		return new Explosion(ExplosiveForce, BlastRadius, transform.position, transform.position + (transform.up * BlastRadius), transform.position + (-transform.up * BlastRadius), collision2D); 
+	Explosion ExplodeMe() {
+		return new Explosion(ExplosiveForce, 
+		                     BlastRadius, 
+		                     transform.position, 
+		                     transform.position + (transform.up * BlastRadius), 
+		                     transform.position + (-transform.up * BlastRadius), 
+		                     collision2D); 
 	}
 }
 
@@ -86,5 +91,47 @@ public class Explosion{
 		end = e;
 		col = c;
 
+	}
+}
+
+public class TextureData{
+	
+	public int x, y, width, height;
+	
+	public TextureData GetOverlap(Texture2D a, Texture2D b, Vector2 pointA, Vector2 pointB, string returnData)
+	{
+		TextureData output = new TextureData();
+		output.width = (int)((isOutside(pointA.x, 0, a.width)) 
+		                     ?  (pointA.x > 0 ) 
+		                     ? (b.width - pointB.x) - (pointA.x - a.width)
+		                     : (b.height - pointB.x) + pointA.x 
+		                     : smaller (pointA.x, pointB.x) + smaller (a.width - pointA.x, b.width - pointB.x));
+		
+		output.height = (int)((isOutside (pointA.y, 0, a.height)) 
+		                      ? (pointA.y > 0 ) 
+		                      ? (b.height - pointB.y) - (pointA.y - a.height) 
+		                      : (b.height - pointB.y) + pointA.y
+		                      : smaller (pointA.y, pointB.y) + smaller (a.height - pointA.y, b.height - pointB.y)); 
+		switch (returnData){
+		case "a":
+			output.x = (int)Mathf.Clamp (pointA.x - pointB.x, 0, smaller (a.width / 2, b.width / 2));
+			output.y = (int)Mathf.Clamp (pointA.y - pointB.y, 0, smaller (a.height / 2, b.height / 2));
+			return output;
+		case "b":
+			output.x = (int)Mathf.Clamp ((b.width - pointB.x) - pointA.x , 0, (b.width - pointB.x));
+			output.y = (int)Mathf.Clamp ((b.height - pointB.y) - pointA.y, 0, (b.height - pointB.y));
+			return output;
+		default:
+			return new TextureData();
+		}
+	}
+	
+	private float smaller(float a, float b){
+		return (a > b) ? b : a;
+	}
+	
+	private bool isOutside(float num, float min, float max)
+	{
+		return (num < min || num > max);
 	}
 }

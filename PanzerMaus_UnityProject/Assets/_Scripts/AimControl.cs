@@ -27,9 +27,14 @@ public class AimControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		}
 	}
 
-	void Start()
+	void OnEnable()
 	{
 		FireEvent.power += GetPower;
+	}
+
+	void OnDisable()
+	{
+		FireEvent.power -= GetPower;
 	}
 
 	public float GetPower()
