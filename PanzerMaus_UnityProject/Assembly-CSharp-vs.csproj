@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\FuelGage.cs" />
      <Compile Include="Assets\JengaBehavior.cs" />
+     <Compile Include="Assets\JengaVictoryEvent.cs" />
      <Compile Include="Assets\MotionController.cs" />
      <Compile Include="Assets\MoveManager.cs" />
      <Compile Include="Assets\MovementSound.cs" />
