@@ -105,13 +105,13 @@ public class TextureData{
 		output.width = (int)((isOutside(pointA.x, 0, a.width)) 
 		                     ? (pointA.x > 0 ) 
 		                     ? smaller ((b.width - pointB.x) - (pointA.x - a.width), a.width)
-		                     : (b.width - pointB.x) + pointA.x 
+		                     : smaller ((b.width - pointB.x) + pointA.x, a.width) 
 		                     : smaller (pointA.x, pointB.x) + smaller (a.width - pointA.x, b.width - pointB.x));
 		
 		output.height = (int)((isOutside (pointA.y, 0, a.height)) 
 		                      ? (pointA.y > 0 ) 
 		                      ? smaller ((b.height - pointB.y) - (pointA.y - a.height), a.height)
-		                      : (b.height - pointB.y) + pointA.y
+		                      : smaller ((b.height - pointB.y) + pointA.y, a.height)
 		                      : smaller (pointA.y, pointB.y) + smaller (a.height - pointA.y, b.height - pointB.y)); 
 		switch (returnData){
 		case "a":

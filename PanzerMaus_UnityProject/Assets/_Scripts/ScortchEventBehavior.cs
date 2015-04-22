@@ -28,6 +28,11 @@ public class ScortchEventBehavior : MonoBehaviour {
 	void blowItUp(Sprite b, Explosion data){
 		if (rigidbody2D != null) {
 			rigidbody2D.isKinematic = false;
+			Vector2 direction = new Vector2(transform.position.x - data.point.x,
+			                                Mathf.Abs (transform.position.y - data.point.y)); 
+			float falloff = (data.radius - direction.magnitude) / data.radius;
+			direction = Vector2.ClampMagnitude(direction, 1);
+			rigidbody2D.AddRelativeForce(direction * data.power * falloff, ForceMode2D.Impulse);
 		}
 		current = (Texture2D)spriteRenderer.sprite.texture;
 
