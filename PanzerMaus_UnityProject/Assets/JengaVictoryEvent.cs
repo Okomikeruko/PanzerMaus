@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections;
 
 public class JengaVictoryEvent : MonoBehaviour {
-	public delegate void MyDelegate();
-	public static event MyDelegate jengaOne, jengaTwo; 
+	public delegate void d();
+	public static event d jengaOne, jengaTwo; 
 
 	void Update (){
-		if (jengaOne.GetInvocationList ().Length <= 0) {
+		if (jengaOne == null) {
 			Debug.Log("Player Two Wins");
 		}
-		if (jengaTwo.GetInvocationList ().Length <= 0) {
+		if (jengaTwo == null) {
 			Debug.Log ("Player One Wins");
 		}
 	}
