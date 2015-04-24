@@ -10,7 +10,7 @@ public class ScortchEventBehavior : MonoBehaviour {
 	private SpriteRenderer spriteRenderer;
 	List<SpriteSlicer2DSliceInfo> sliceReference; 
 	
-	void Start () {
+	void Awake () {
 		FireEventControl.explosionEvent += ExplodingEvent;
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
@@ -26,13 +26,16 @@ public class ScortchEventBehavior : MonoBehaviour {
 	}
 	
 	void blowItUp(Sprite b, Explosion data){
-		if (rigidbody2D != null) {
-			rigidbody2D.isKinematic = false;
+		Rigidbody2D r = this.gameObject.GetComponent<Rigidbody2D> ();
+		Debug.Log (r);
+		if (r != null) {
+			Debug.Log ("hello");
+			r.isKinematic = false;
 			Vector2 direction = new Vector2(transform.position.x - data.point.x,
 			                                Mathf.Abs (transform.position.y - data.point.y)); 
 			float falloff = (data.radius - direction.magnitude) / data.radius;
 			direction = Vector2.ClampMagnitude(direction, 1);
-			rigidbody2D.AddRelativeForce(direction * data.power * falloff, ForceMode2D.Impulse);
+			r.AddRelativeForce(direction * data.power * falloff, ForceMode2D.Impulse);
 		}
 		current = (Texture2D)spriteRenderer.sprite.texture;
 
