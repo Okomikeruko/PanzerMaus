@@ -29,7 +29,7 @@ public class MoveManager : MonoBehaviour {
 
 	public static void ResetMoves()
 	{
-		MovesRemaining = 3;
+		MovesRemaining = 1;
 	}
 
 	public static void EndMove()

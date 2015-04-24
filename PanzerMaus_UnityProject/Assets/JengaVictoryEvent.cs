@@ -7,10 +7,10 @@ public class JengaVictoryEvent : MonoBehaviour {
 
 	void Update (){
 		if (jengaOne == null) {
-			Debug.Log("Player Two Wins");
+			//Debug.Log("Player Two Wins");
 		}
 		if (jengaTwo == null) {
-			Debug.Log ("Player One Wins");
+			//Debug.Log ("Player One Wins");
 		}
 	}
 }
